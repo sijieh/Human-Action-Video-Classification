@@ -1,41 +1,62 @@
-# Human-Action-Video-Classification
+# 🎥 Human-Action-Video-Classification
 
-UCF101 Video Classification and Style Transfer
+This project implements a two-stage deep learning pipeline that combines human action recognition with video style transfer.
 
-This project demonstrates a two-stage deep learning pipeline:
+---
 
-	1.	Video Classification: Using ResNet with transfer learning on the UCF101 dataset.
- 
-	2.	Style Transfer: Applying a CycleGAN model to stylize videos while preserving their semantic content.
- 
-🧠 Stage 1: Video Classification (ResNet)
+## 🧠 Stage 1: Video Classification with ResNet
 
-I classify human actions using transfer learning on ResNet:
+Classify human actions in videos using transfer learning with ResNet.
 
-	•	Dataset: UCF101 – 101 human action categories in videos.
- 
-	•	Preprocessing: Sampled video frames resized to feed into ResNet.
- 
-	•	Model: Pre-trained ResNet50 with a custom classifier head.
- 
-	•	Training: Fine-tuned on a subset of UCF101.
- 
-📊 Model Evaluation
+### 🔹 Dataset
+- **UCF101**: A benchmark dataset of 13,000+ video clips across 101 human action categories (e.g., basketball dunk, archery, jumping jack).
 
-Accuracy: 96%
+### 🔹 Preprocessing
+- Extracted and resized frames from video clips.
+- Prepared frame sequences suitable for CNN input.
 
-🎨 Stage 2: Style Transfer (CycleGAN)
+### 🔹 Model
+- Utilized pre-trained **ResNet50** as the feature extractor.
+- Appended a custom classification head for multi-class prediction.
 
-After classification, I stylize videos with CycleGAN:
+### 🔹 Training
+- Fine-tuned on a subset of UCF101 using standard data augmentation and learning rate scheduling.
 
-	•	Objective: Transfer video appearance to another visual domain (e.g., from natural to artistic style) without paired data.
- 
-	•	Architecture: Cycle-consistent adversarial networks with ResNet-based generators.
- 
-	•	Result: Maintain content (pose/action) while transforming style.
+---
 
-✨ Features
+## 📊 Model Evaluation
 
-	•	Frame-by-frame transformation using pre-trained CycleGAN weights.
- 
-	•	Option to run in real-time via streamlit_cyclegan_video.py.
+- **Validation Accuracy**: ~96%
+
+---
+
+## 🎨 Stage 2: Style Transfer with CycleGAN
+
+Stylize video frames while preserving their semantic content (pose/action).
+
+### 🔹 Objective
+- Transfer video appearance to another visual domain (e.g., natural to artistic) **without requiring paired data**.
+
+### 🔹 Architecture
+- Implemented **CycleGAN** with ResNet-based generators and cycle-consistency loss.
+
+### 🔹 Result
+- Maintains motion and pose accuracy while transforming frame appearance into a target artistic style.
+
+---
+
+## ✨ Features
+
+- ✅ Frame-by-frame transformation using pre-trained **CycleGAN** weights.
+- ✅ Option to run **real-time video stylization** via `streamlit_cyclegan_video.py`.
+- ✅ Supports applying models to individual frames or full video sequences.
+
+---
+
+## 📁 Project Structure
+
+- `video_classification/` — ResNet training, evaluation, and preprocessing
+- `style_transfer/` — CycleGAN scripts for training and stylization
+- `notebooks/` — Visualizations and experiments
+- `streamlit_cyclegan_video.py` — Real-time stylization web app
+- `data/` — Sample input frames and class labels
